@@ -48,6 +48,8 @@ Checkpoint: הפיצ׳ר עובד בנתיב אחד מקצה לקצה.
 
 הפעילו `/loop-engineering`:
 
+לפני הריצה, עברו על [`06-EXECUTION-LOOPS-HE.md`](06-EXECUTION-LOOPS-HE.md), נעלו Goal ובחרו את משטח ה-access הצר שמתאים למשימה.
+
 1. בדיקה צרה.
 2. `npm run verify`.
 3. Review עצמאי באמצעות `change-reviewer`.

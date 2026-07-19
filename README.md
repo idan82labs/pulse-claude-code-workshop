@@ -37,6 +37,7 @@ The command type-checks, tests, and builds both the frontend and backend.
 - [`workshop/02-PARTICIPANT-GUIDE-HE.md`](workshop/02-PARTICIPANT-GUIDE-HE.md) — participant flow and checkpoints
 - [`workshop/03-SPEC-CANVAS-HE.md`](workshop/03-SPEC-CANVAS-HE.md) — specification template
 - [`workshop/05-HOMEWORK-HE.md`](workshop/05-HOMEWORK-HE.md) — post-workshop assignment
+- [`workshop/06-EXECUTION-LOOPS-HE.md`](workshop/06-EXECUTION-LOOPS-HE.md) — practical loop, access, model-routing and context runbook
 
 ## Repository map
 
