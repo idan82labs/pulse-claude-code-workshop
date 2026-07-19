@@ -56,10 +56,43 @@ PLAN (strong) → EXECUTE (fast/cheap) → FALSIFY (strong)
 - מודל זול ומהיר לביצוע רק כשהקבצים, הפקודות, ה-tests ורדיוס הפעולה כבר מוגדרים.
 - מודל חזק לביקורת עצמאית שמנסה להפריך assumptions וראיות.
 - חזרו מיד ל-planner כשיש architecture drift, requirement עמום, invariant שנכשל או צורך בהרחבת permission.
+- ב-Pro, נסו `/model opusplan`: Opus מתכנן ו-Sonnet מבצע, אם המסלול זמין בחשבון. אם הוא אינו מופיע ב-`/model`, הישארו עם Sonnet ואל תבנו את התרגיל סביב Opus.
 
 Model delegation אינו חיסכון אוטומטי. Plan גרוע ו-retries מוחקים את החיסכון.
 
-## 4. מוציאים state מהצ׳אט
+## 4. מפרידים מודל, effort והרשאות
+
+אלה שלושה knobs שונים:
+
+```text
+MODEL  = מעטפת היכולת
+EFFORT = כמה reasoning להקצות בתוך המעטפת
+ACCESS = מה הסוכן רשאי לקרוא, לשנות ולהפעיל
+```
+
+ב-Claude Code הריצו `/effort` כדי לבחור רמה, או `/effort auto` כדי לחזור לברירת המחדל של המודל:
+
+| רמה | שימוש נכון |
+|---|---|
+| `low` | משימה קצרה, תחומה, מהירה ולא רגישה לעומק שיקול הדעת |
+| `medium` | עבודה ברורה שבה חיסכון בשימוש חשוב יותר מעוד מעט עומק |
+| `high` | ברירת מחדל טובה לרוב עבודת הפיתוח; מינימום למשימה intelligence-sensitive |
+| `xhigh` | עבודה סוכנית מורכבת במודל שתומך ברמה, כגון Opus 4.7; ב-Pro נסו `/model opusplan` |
+| `max` | משימה קשה וחד-פעמית; עלול להגיע לתשואה פוחתת ול-overthinking |
+
+נכון ליולי 2026, ברירת המחדל של Pro היא Sonnet 4.6 עם `high`. אותו שם effort אינו אותו reasoning budget בכל מודל. `max` הוא session-only, אלא אם הוגדר דרך משתנה סביבה. המילה `ultrathink` מבקשת עומק נוסף לפנייה אחת, אך אינה משנה את רמת ה-effort שנשלחת ל-API.
+
+תרגיל של 8 דקות:
+
+1. הריצו `/effort low` ובקשו plan בלבד ל-feature, בלי לערוך קוד.
+2. שמרו את התשובה.
+3. הריצו `/effort high` ושלחו בדיוק את אותו prompt.
+4. צרו `workshop-output/EFFORT-COMPARISON.md` והשוו: הנחות, קבצים ו-contracts, failure propagation, tests, שאלות פתוחות, latency ונטייה ל-overthink.
+5. חזרו עם `/effort auto`.
+
+בחשבון Pro השימוש משותף ל-Claude ול-Claude Code. מודל, effort, אורך context והפעלת כלים משפיעים על הקצב שבו המכסה נצרכת. אל תכננו לפי מספר הודעות קבוע; בדקו `/status`, שמרו working set קטן והפעילו `max` רק כששיפור ההחלטה מצדיק את העלות.
+
+## 5. מוציאים state מהצ׳אט
 
 החזיקו על הדיסק:
 
@@ -78,7 +111,7 @@ Model delegation אינו חיסכון אוטומטי. Plan גרוע ו-retries 
 
 Compaction מסכם היסטוריה כדי לפנות מקום. Project-root `CLAUDE.md` ו-auto memory נטענים מחדש; הוראות שנשארו רק בשיחה, rules תלויות-path ו-`CLAUDE.md` מקונן עלולים לא להיות זמינים עד לקריאה מחדש. אל תשתמשו בצ׳אט כ-system of record.
 
-## 5. מריצים שלושה סבבים לכל היותר
+## 6. מריצים שלושה סבבים לכל היותר
 
 1. Inspect + spec + vertical-slice plan.
 2. Implement + tests + screenshot.
@@ -98,7 +131,7 @@ Compaction מסכם היסטוריה כדי לפנות מקום. Project-root `C
 # Exact next command
 ```
 
-## 6. מסווגים כשל לפני retry
+## 7. מסווגים כשל לפני retry
 
 - transient tool/network failure → retry מוגבל עם backoff.
 - deterministic code/test failure → repair ממוקד ואז rerun.
