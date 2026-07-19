@@ -1,0 +1,8 @@
+{
+  "name": "pulse-expert-pack",
+  "description": "Example Claude Code plugin that packages a release-quality workflow and independent reviewer.",
+  "version": "1.0.0",
+  "author": {
+    "name": "82Labs"
+  }
+}
