@@ -42,11 +42,11 @@ npm run dev
 
 פתחו `http://localhost:4310/design-demo` והריצו בקשה אחת בלי Skill. שמרו את התוצאה ב-`workshop-output/EVIDENCE/before.md`.
 
-העתיקו את `workshop/templates/my-skill/` אל `.claude/skills/my-skill/` וכתבו `SKILL.md` קצר עם מועד הפעלה, שאלות חובה, כללים מקצועיים, פורמט פלט ורובריקת בדיקה.
+העתיקו את `workshop/templates/my-skill/` אל `.claude/skills/my-skill/` וכתבו `SKILL.md` קצר עם מועד הפעלה, שאלות חובה, כללים מקצועיים, פורמט פלט ורובריקה של ארבעה ממדים. הגדירו לכל ממד מה פירוש 5 ומה פירוש 10, ואז קבעו רף מעבר.
 
-הריצו שוב את אותה בקשה עם ה-Skill ושמרו `workshop-output/EVIDENCE/after.md` ו-`workshop-output/EVIDENCE/before-after.md`.
+תנו ל-baseline ציון מול הרובריקה. הריצו שוב את אותה בקשה עם ה-Skill, בקשו critique על שלושת הפערים בעלי ההשפעה הגבוהה ביותר, תקנו ותנו ל-reviewer טרי לציינן שוב. שמרו `workshop-output/EVIDENCE/after.md`, `workshop-output/EVIDENCE/before-after.md` ואת הציונים.
 
-סיימתם כשאפשר להצביע על שלוש החלטות שהשתפרו — לא רק על צבעים או ניסוח שונים.
+סיימתם כשעברתם את הרף שהגדרתם, או כשהגעתם ל-blocker, לתקציב או לשלושה סבבים. צריך להיות אפשר להצביע על שלוש החלטות שהשתפרו — לא רק על צבעים או ניסוח שונים.
 
 ## לולאה 4 — לתכנן לעומק ולבצע בחתכים · 40 דקות
 

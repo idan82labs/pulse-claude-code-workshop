@@ -9,6 +9,14 @@ Goal → Observe → Decide → Act → Verify
 
 כל סיבוב צריך לייצר ראיה חדשה. אם לא למדנו משהו חדש, אין סיבה לצפות שהסיבוב הבא יהיה טוב יותר.
 
+הכלים הרחיבו את סוג ה-observation שה-agent יכול לקבל. API מחזיר נתונים מובנים, CLI ו-MCP משנים state, Browser מפעיל flow אמיתי, ו-computer use מחזיר screenshots גם כשאין API ייעודי. Vision מכניס את התוצאה החזותית לתוך הלולאה:
+
+```text
+Render → Screenshot → Critique → Revise → Re-render
+```
+
+צילום מסך לבדו לא מספיק. צרפו כשאפשר DOM, console, network, test output וה-state שהוביל למסך.
+
 ## 0. בוחרים את המנגנון הנכון
 
 | צורך | מנגנון | למה |
@@ -46,6 +54,19 @@ Goal → Observe → Decide → Act → Verify
 # Stop
 PASS | BLOCKED | BUDGET | AMBIGUOUS | PERMISSION BOUNDARY
 ```
+
+## 1.5. מפרידים בין done לבין איכות
+
+`done` אומר שהקריטריונים הפונקציונליים עברו. הוא לא אומר שהתוצאה ברורה, חזקה או מוכנה למסירה.
+
+1. הגדירו rubric לפני הריצה: functionality, correctness, UX ו-evidence.
+2. כתבו anchors: מה נראה כמו 5/10 ומה נראה כמו 10/10 בכל ממד.
+3. שמרו ציון baseline.
+4. בקשו critique על שלושת הפערים בעלי ההשפעה הגבוהה ביותר.
+5. תקנו שינוי ממוקד והריצו את אותו rubric עם reviewer טרי.
+6. עצרו ב-target, ב-blocker, בתקציב או אחרי שלושה סבבים.
+
+אל תשנו את הרובריקה באמצע כדי לעבור. הציון אינו אמת אובייקטיבית; הוא חוזה שמכריח את הצוות להגדיר מה פירוש ״טוב״ ולשמור ראיות לשיפור.
 
 ## 2. נותנים גישה לפי המשימה
 

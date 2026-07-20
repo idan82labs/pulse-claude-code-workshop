@@ -27,4 +27,4 @@ Describe the decision this Skill should improve. Do not describe a visual style 
 
 # Quality check
 
-Before returning, score the result from 1–5 on usefulness, specificity and fit to the product. Revise any dimension below 4.
+Before the first run, define a 1–10 rubric with clear anchors and a target score. Save the baseline, critique the three highest-impact gaps, revise, and re-score with the same rubric. Stop at the target, a blocker, the budget, or three rounds.
