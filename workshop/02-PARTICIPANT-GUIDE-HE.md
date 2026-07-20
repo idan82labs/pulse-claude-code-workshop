@@ -2,13 +2,18 @@
 
 ## לפני שמתחילים
 
+ודאו ש-Claude Code מותקן ומחובר לחשבון, ואז הריצו:
+
 ```bash
+claude --version
 npm install
 npm run verify
 npm run dev
 ```
 
-פתחו את `http://localhost:4310`, עברו על המסכים ובדקו את `/status` ב-Claude Code.
+פתחו את `http://localhost:4310`, עברו על המסכים וב-Claude Code בדקו `/status`, `/model` ו-`/permissions`. התחילו עם ההרשאות הצרות שמספיקות לתרגיל; אל תכניסו secrets ואל תחברו production.
+
+אם ההתקנה או ההתחברות נתקעות, עברו לזוג עם סביבת עבודה תקינה והמשיכו מה-repo. לא משתפים חשבון, סיסמה או token.
 
 ## שלב 0 — מיפוי וניסוי effort
 
