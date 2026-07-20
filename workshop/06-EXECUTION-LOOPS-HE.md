@@ -94,6 +94,27 @@ PLAN (strong) → EXECUTE (fast/cheap) → FALSIFY (strong)
 
 Model delegation לא חוסך כסף מעצמו. Plan גרוע ו-retries יכולים למחוק את כל החיסכון.
 
+### תמונת מצב של המודלים, 20.07.2026
+
+המחירים הבאים הם מחירי API בדולר למיליון tokens, input / output. הם נועדו להמחיש את כלכלת הניתוב; אין צורך ב-API כדי לבצע את תרגילי הסדנה.
+
+| Tier | מודלים לדוגמה | מחיר | מתי לבחור |
+|---|---|---:|---|
+| Frontier | Claude Fable 5 | $10 / $50 | תכנון ארוך, migration מורכב, ambiguity גבוהה וביקורת סופית |
+| Frontier | GPT-5.6 Sol | $5 / $30 | תכנון, בעיות מקצועיות מורכבות ו-verification |
+| Workhorse | Claude Sonnet 5 | $2 / $10 עד 31.08.2026 | רוב עבודת ההנדסה והביצוע היומיומי |
+| Workhorse | GPT-5.6 Terra | $2.50 / $15 | איזון בין יכולת לעלות |
+| Fast | GPT-5.6 Luna | $1 / $6 | משימות תחומות, חזרתיות ו-latency נמוך |
+| Open frontier | Kimi K3 | $3 / $15; cached input $0.30 | agentic coding, long context ושליטה ב-deployment |
+
+מקורות: [Anthropic Fable](https://www.anthropic.com/claude/fable), [OpenAI model tiers](https://developers.openai.com/api/docs/models/compare), [Kimi K3](https://www.kimi.com/fr-fr/blog/kimi-k3).
+
+### למה max אינו ברירת מחדל
+
+ב-DeepSWE v1.1, מעבר של Fable 5 מ-`high` ל-`max` שיפר את Pass@1 בכ-1.1 נקודות בלבד, מ-68.6% ל-69.7%, בזמן שהעלות הממוצעת למשימה עלתה מ-$9.18 ל-$21.63, פי 2.36. זה בדיוק ההבדל בין "הכי חזק" לבין "הכי נכון למשימה".
+
+השתמשו ב-`max` כשעלות הכשל גבוהה והמשימה באמת דורשת exploration ארוך. בשאר המקרים התחילו ב-`medium` או `high`, מדדו מול eval קבוע והעלו effort רק אם השיפור מצדיק את העלות. מקור: [DeepSWE v1.1](https://deepswe.datacurve.ai/).
+
 ## 4. מפרידים מודל, effort והרשאות
 
 אלה שלוש החלטות שונות:
