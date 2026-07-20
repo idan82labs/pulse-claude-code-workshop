@@ -103,7 +103,7 @@ ACCESS = מה הסוכן רשאי לקרוא, לשנות ולהפעיל
 4. צרו `workshop-output/EFFORT-COMPARISON.md` והשוו: הנחות, קבצים ו-contracts, failure propagation, tests, שאלות פתוחות, latency ונטייה ל-overthink.
 5. חזרו עם `/effort auto`.
 
-במנוי Claude, השימוש ב-Claude וב-Claude Code עשוי לרדת מאותה מכסה. המודל, ה-effort, אורך ה-context והפעלת כלים משפיעים על קצב הצריכה. אל תתכננו לפי מספר הודעות קבוע; בדקו `/status`, שמרו working set קטן והפעילו `max` רק כששיפור ההחלטה מצדיק את העלות.
+המודל, ה-effort, אורך ה-context והפעלת כלים משפיעים על זמן ועלות. שמרו working set קטן והפעילו `max` רק כששיפור ההחלטה מצדיק את המחיר.
 
 ## 5. שומרים את מצב העבודה מחוץ לצ׳אט
 

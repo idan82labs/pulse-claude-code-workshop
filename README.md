@@ -8,7 +8,7 @@ This repository is the clean participant baseline. The workshop feature is delib
 
 ## Run the project
 
-Requirements: Node.js 20 or newer and an active Claude Pro subscription.
+Requirements: Node.js 20 or newer and Claude Code installed.
 
 ```bash
 git clone https://github.com/idan82labs/pulse-claude-code-workshop.git
@@ -38,6 +38,8 @@ The command type-checks, tests, and builds both the frontend and backend.
 - [`workshop/03-SPEC-CANVAS-HE.md`](workshop/03-SPEC-CANVAS-HE.md) — specification template
 - [`workshop/05-HOMEWORK-HE.md`](workshop/05-HOMEWORK-HE.md) — post-workshop assignment
 - [`workshop/06-EXECUTION-LOOPS-HE.md`](workshop/06-EXECUTION-LOOPS-HE.md) — practical loop, access, model-routing and context runbook
+- [`workshop/templates/my-skill/SKILL.md`](workshop/templates/my-skill/SKILL.md) — starter template for the packaged-expertise exercise
+- [`workshop-output/README.md`](workshop-output/README.md) — the artifact chain participants build during the session
 
 ## Repository map
 
@@ -53,4 +55,4 @@ examples/plugin/          The same idea packaged as a shareable Claude Code plug
 
 ## Workshop boundary
 
-The application does not call an AI API. Claude Code is the development environment, not a runtime dependency of Pulse. Participants should not add secrets or paid services during the session.
+The application does not call an AI API. Claude Code is the development environment, not a runtime dependency of Pulse. Participants should not add secrets or external runtime dependencies during the session.
