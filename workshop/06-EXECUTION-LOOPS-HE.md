@@ -30,6 +30,24 @@ Render → Screenshot → Critique → Revise → Re-render
 
 `CLAUDE.md` הוא הוראה התנהגותית, לא שכבת enforcement. חסימת כלים, paths או פקודות שייכת ל-permissions, sandbox או hook חוסם. לפי תיעוד Anthropic, קובץ קצר ומובנה, סביב 200 שורות לכל היותר, נוטה להישמר טוב יותר ב-context.
 
+## 0.5. מצב ההרשאה הוא חלק מחוזה הביצוע
+
+| מצב | מה קורה | שימוש נכון |
+|---|---|---|
+| `default` | קריאה עובדת; עריכות ופקודות שדורשות הרשאה עוצרות לאישור | התחלה בטוחה ועבודה רגישה |
+| `acceptEdits` | עריכת קבצים ופעולות filesystem שכיחות מאושרות; פעולות terminal אחרות עדיין עשויות לעצור | מצב הביצוע בסדנה, אחרי אישור ה-Plan |
+| `plan` | Claude חוקר ומתכנן בלי לערוך את קוד המקור | לפני שינוי משמעותי ובכל replan |
+| `auto` | פעולות רצות בלי prompt לכל צעד, עם classifier בטיחות ברקע | תלוי חשבון וסביבה; מכירים, אך לא משתמשים בסדנה |
+| `bypassPermissions` | שכבת ההרשאות נעקפת | רק ב-container או VM מבודדים וזמניים, בלי credentials ובלי גישה למחשב המארח |
+
+הזרימה בסדנה היא:
+
+```text
+PLAN mode → human approval → ACCEPT EDITS → bounded execution → verify
+```
+
+אם במהלך הביצוע נפתחת החלטת מוצר, ארכיטקטורה, scope או permission חדשה, חוזרים ל-Plan Mode. `bypassPermissions` והדגל המקביל `--dangerously-skip-permissions` אינם דרך להיפטר מהפרעות; בלי בידוד אמיתי הם מסירים את שכבת ההגנה הלא נכונה.
+
 ## 1. מגדירים מראש מה נחשב הצלחה
 
 צרו `workshop-output/GOAL.md`:
