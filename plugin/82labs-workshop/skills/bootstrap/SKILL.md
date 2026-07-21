@@ -19,7 +19,8 @@ do not reimplement its steps by hand.
    different remote — is left untouched and the script exits with an error
    instead of overwriting it.
 4. Verifies the checkout actually contains `CLAUDE.md`, `.claude/skills`,
-   `.claude/agents`, `workshop/templates`, and `workshop-output`.
+   `.claude/agents`, the conditional security expert, the audit contract,
+   `workshop/templates`, and `workshop-output`.
 5. Runs `npm install` and then `npm run verify` (both can be skipped).
 6. Prints the exact command to `cd` into the project and start Claude Code.
 
@@ -51,8 +52,8 @@ workshop, so there is nothing left to scaffold:
 - A best-practice `CLAUDE.md` with the project's engineering boundaries.
 - Reusable project skills under `.claude/skills/`.
 - Expert subagents under `.claude/agents/` (product, architecture, design, QA,
-  change review).
-- Spec, goal, plan, and evidence templates under `workshop/templates/` and
+  conditional security, and change review).
+- Spec, goal, plan, audit, and evidence templates under `workshop/templates/` and
   `workshop-output/`.
 - The Pulse product itself (`src/`), runnable with `npm run dev` and
   verifiable with `npm run verify`.

@@ -86,6 +86,27 @@ PASS | BLOCKED | BUDGET | AMBIGUOUS | PERMISSION BOUNDARY
 
 אל תשנו את הרובריקה באמצע כדי לעבור. הציון אינו אמת אובייקטיבית; הוא חוזה שמכריח את הצוות להגדיר מה פירוש ״טוב״ ולשמור ראיות לשיפור.
 
+## 1.75. עושים Fan-out רק לשאלות עצמאיות
+
+```text
+SHARED BRIEF
+  ├─ Product
+  ├─ Design
+  ├─ Architecture
+  ├─ QA
+  └─ Security — conditional
+          ↓
+OWNER: dedupe → resolve conflicts → one decision
+```
+
+כל branch מקבל שאלה אחת, מקורות מדויקים, כלים צרים, פורמט תשובה ותנאי עצירה. בסדנה מריצים ברצף כדי לשמור usage. במערכת עם תקציב מתאים אפשר להריץ במקביל רק ענפים שאין ביניהם תלות.
+
+Security מופעל כשהשינוי נוגע להרשאות, מידע רגיש, input חיצוני, dependency, MCP, CLI, Browser, SSH או deploy. אם אין trigger, מתעדים זאת ולא צורכים Agent רק כדי למלא רשימה.
+
+ה-owner עושה fan-in: מסיר כפילויות, פותר סתירות, מתעד חלופות שנדחו ומוציא Spec או verdict אחד. לא מחברים memos.
+
+לא עושים fan-out למשימה קטנה, לעבודה שיש בה סדר תלות קשיח או לשאלות חופפות. עוצרים ענף שלא מחזיר מידע חדש.
+
 ## 2. נותנים גישה לפי המשימה
 
 | משימה | משטח | Access | Guardrail | Evidence |
@@ -97,6 +118,16 @@ PASS | BLOCKED | BUDGET | AMBIGUOUS | PERMISSION BOUNDARY
 | parallel, background או deploy | CI / Cloud | sandbox/worktree/branch לכל agent | approval gate לפני פעולה בלתי הפיכה | checks + artifact + status |
 
 SSH הוא לא קיצור דרך. אם CI, API או MCP יכולים לבצע פעולה מוגדרת ומבוקרת, העדיפו אותם על shell חופשי.
+
+## 2.5. Audit קורה לפני, במהלך ואחרי
+
+| נקודה | בודקים | תוצאה |
+|---|---|---|
+| Pre-flight | Goal, Spec, Plan, permissions וגבולות | `PASS / REPAIR / REPLAN / HUMAN DECISION` |
+| In-flight | diff מול Plan, בדיקה קרובה, scope, trust boundary וראיה חדשה | ממשיכים, מתקנים או חוזרים לתכנון |
+| Release | functionality, product/UX, architecture, security/privacy ו-evidence | Reviewer נקי, בלי עריכת קוד |
+
+כל finding חייב לכלול severity, criterion, ראיה מדויקת, impact ו-action. אם אין ראיה, הטענה אינה עוברת. התבנית נמצאת ב-`workshop/templates/AUDIT-CONTRACT.md`.
 
 ## 3. מנתבים מודלים לפי שלב
 

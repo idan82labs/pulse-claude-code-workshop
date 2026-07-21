@@ -29,7 +29,7 @@ npm run dev
 - ה-Plugin הגלובלי מוסיף את `/82labs-workshop:bootstrap`. זאת פקודת setup; לא עובדים דרכה על הפיצ׳ר.
 - `CLAUDE.md` נטען אוטומטית כשפותחים Claude Code מתוך ה-repo.
 - `.claude/skills/` מכילה workflows חוזרים. לדוגמה: `/write-feature-spec`, ‏`/architecture-plan` ו-`/ui-ux-review`.
-- `.claude/agents/` מכילה מומחי Product, Design, Architecture, QA ו-Review. מבקשים מה-Agent הראשי להפעיל מומחה בשם ולהחזיר תשובה תחומה.
+- `.claude/agents/` מכילה מומחי Product, Design, Architecture, QA, Security ו-Review. Security מופעל רק כשיש גבול אמון, מידע רגיש או גישה חיצונית.
 - `workshop/templates/` היא נקודת הפתיחה; `workshop-output/` היא תיקיית התוצרים והראיות.
 
 ```bash
@@ -71,9 +71,10 @@ workshop-output/
 
 1. קוראים את בריף המוצר ואת ה-repo וממפים את המסלול הקיים דרך UI, API, domain ו-tests.
 2. כותבים Goal עם non-goals, שלושה קריטריונים וראיה לכל קריטריון.
-3. מפעילים Product, Design, Architecture ו-QA כ-subagents לקריאה בלבד. כל מומחה מחזיר שתי המלצות, סיכון ושאלה פתוחה.
-4. ה-main agent נשאר owner: הוא פותר סתירות וכותב `FEATURE_SPEC.md` אחד, לא ארבעה memos מחוברים.
-5. נכנסים ל-Plan Mode וכותבים את החתך השלם הקטן ביותר: קבצים מדויקים, contracts, invariants, מצבי כשל, בדיקה לכל criterion ותנאי עצירה.
+3. עושים fan-out לקריאה בלבד: Product, Design, Architecture ו-QA מקבלים אותו brief, שאלה שונה וחוזה פלט קבוע. בסדנה מריצים ברצף כדי לשמור usage.
+4. מפעילים Security רק כשהשינוי נוגע להרשאות, מידע רגיש, input חיצוני, dependency, MCP, CLI, browser, SSH או deploy. אחרת כותבים `SECURITY NOT TRIGGERED` והסיבה.
+5. ה-main agent עושה fan-in: מסיר כפילויות, פותר סתירות וכותב `FEATURE_SPEC.md` אחד, לא אוסף memos.
+6. נכנסים ל-Plan Mode וכותבים את החתך השלם הקטן ביותר: קבצים מדויקים, contracts, invariants, מצבי כשל, בדיקה לכל criterion ותנאי עצירה.
 
 שומרים `PRODUCT-MAP.md`, `GOAL.md`, `FEATURE_SPEC.md` ו-`PLAN.md` בתוך `workshop-output/`.
 
@@ -90,10 +91,19 @@ workshop-output/
 3. מאשרים את ה-Plan, עוברים ל-Accept Edits, מורידים ל-effort בינוני ומבצעים את `PLAN.md` בצעדים תחומים.
 4. משלימים מסלול אחד דרך UI, API, domain ו-test, כולל loading, empty, error ו-recovery רלוונטיים.
 5. מריצים `npm run verify`, משווים לפני ואחרי מול אותה רובריקה ונותנים ל-reviewer עם context נקי לנסות להפריך את טענת הסיום.
+6. כל finding מציין severity, criterion, ראיה מדויקת, impact, action ו-verdict אחד: `PASS / REPAIR / REPLAN / HUMAN DECISION`.
 
 שומרים את ה-Skill, ה-diff, `EVIDENCE/before-after.md`, `REVIEW.md` ו-`CHANGE-WALKTHROUGH.md`.
 
 סיימתם כשמסלול אחד עובד מקצה לקצה, כל שיפור מול ה-baseline קשור לכלל ב-Skill, וה-reviewer מחזיר PASS או blocker מדויק.
+
+## Audit בשלוש נקודות
+
+- לפני ביצוע: בודקים Goal, Spec, Plan, הרשאות וגבולות.
+- במהלך ביצוע: משווים כל chunk ל-Plan, מריצים בדיקה קרובה ומוודאים שנוצרה ראיה חדשה.
+- לפני מסירה: Reviewer נקי בודק functionality, product/UX, architecture, security/privacy ו-evidence בלי לערוך קוד.
+
+התבנית המלאה נמצאת ב-`workshop/templates/AUDIT-CONTRACT.md` וב-`workshop/04-AUDIT-PLAYBOOK-HE.md`.
 
 ## כש-context מתפזר
 

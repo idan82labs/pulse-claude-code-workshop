@@ -9,8 +9,8 @@ Pulse gives delivery leads a shared view of projects, progress, constraints, and
 1. Read `workshop/01-PROJECT-BRIEF-HE.md` and `workshop/03-SPEC-CANVAS-HE.md`.
 2. Explore the current product and API before proposing changes.
 3. Write an explicit goal, non-goals, acceptance criteria, constraints, and verification plan.
-4. Ask the product, architecture, design, and QA experts for focused perspectives.
-5. Synthesize their advice into one coherent feature specification. Experts advise; they do not decide.
+4. Fan out focused, read-only perspectives to product, architecture, design, and QA. Add the security expert only when the change crosses a trust boundary, handles sensitive data or external input, or expands tool/deployment access.
+5. Fan in their advice into one coherent feature specification: remove duplicates, resolve conflicts and record rejected options. Experts advise; the main agent decides.
 6. Present the plan before editing application code.
 
 ## Engineering boundaries
@@ -31,6 +31,7 @@ A feature is complete only when:
 - Loading, empty, error, and success states are considered where relevant.
 - `npm run verify` passes.
 - The current git diff has received an independent review.
+- Every review finding names severity, criterion, exact evidence, impact, action and a final `PASS / REPAIR / REPLAN / HUMAN DECISION` verdict.
 - The participant can explain the decision, tradeoffs, and remaining risks.
 
 ## Useful commands

@@ -68,9 +68,11 @@ Then run `/82labs-workshop:bootstrap` from any session.
 - [`workshop/01-PROJECT-BRIEF-HE.md`](workshop/01-PROJECT-BRIEF-HE.md) — the deliberately open feature request
 - [`workshop/02-PARTICIPANT-GUIDE-HE.md`](workshop/02-PARTICIPANT-GUIDE-HE.md) — participant flow and checkpoints
 - [`workshop/03-SPEC-CANVAS-HE.md`](workshop/03-SPEC-CANVAS-HE.md) — specification template
+- [`workshop/04-AUDIT-PLAYBOOK-HE.md`](workshop/04-AUDIT-PLAYBOOK-HE.md) — fan-out/fan-in, three audit points and a reusable finding contract
 - [`workshop/05-HOMEWORK-HE.md`](workshop/05-HOMEWORK-HE.md) — post-workshop assignment
 - [`workshop/06-EXECUTION-LOOPS-HE.md`](workshop/06-EXECUTION-LOOPS-HE.md) — practical loop, access, model-routing and context runbook
 - [`workshop/templates/my-skill/SKILL.md`](workshop/templates/my-skill/SKILL.md) — starter template for the packaged-expertise exercise
+- [`workshop/templates/AUDIT-CONTRACT.md`](workshop/templates/AUDIT-CONTRACT.md) — copyable pre-flight, in-flight and release audit record
 - [`workshop-output/README.md`](workshop-output/README.md) — the artifact chain participants build during the session
 
 ## Repository map
@@ -79,7 +81,7 @@ Then run `/82labs-workshop:bootstrap` from any session.
 src/client/               React product UI
 src/server/               Express API and seeded portfolio data
 src/shared/               Shared domain types
-.claude/agents/           Product, architecture, design, QA and review experts
+.claude/agents/           Product, architecture, design, QA, security and review experts
 .claude/skills/           Reusable specification, design and loop workflows
 workshop/                 Participant brief, canvas, guide and homework
 examples/plugin/          A different example: packaging project skills as a plugin

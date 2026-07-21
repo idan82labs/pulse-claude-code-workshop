@@ -1,7 +1,7 @@
 {
   "name": "82labs-workshop",
   "description": "One-command bootstrap for the 82Labs Pulse Claude Code workshop: clones the workshop repository, installs dependencies, verifies workshop assets are present, and reports the exact command to start working.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": {
     "name": "82Labs"
   },

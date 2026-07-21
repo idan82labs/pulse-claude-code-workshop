@@ -16,7 +16,9 @@ REQUIRED_PATHS=(
   "CLAUDE.md"
   ".claude/skills"
   ".claude/agents"
+  ".claude/agents/security-expert.md"
   "workshop/templates"
+  "workshop/templates/AUDIT-CONTRACT.md"
   "workshop-output"
 )
 

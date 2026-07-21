@@ -64,7 +64,9 @@ cat > "$FIXTURE/CLAUDE.md" <<'EOF'
 EOF
 : > "$FIXTURE/.claude/skills/.gitkeep"
 : > "$FIXTURE/.claude/agents/.gitkeep"
+: > "$FIXTURE/.claude/agents/security-expert.md"
 : > "$FIXTURE/workshop/templates/.gitkeep"
+: > "$FIXTURE/workshop/templates/AUDIT-CONTRACT.md"
 : > "$FIXTURE/workshop-output/.gitkeep"
 
 cat > "$FIXTURE/package.json" <<'EOF'
@@ -98,6 +100,8 @@ assert_success "fresh clone with install/verify skipped" \
   "$BOOTSTRAP" --target "$CHECKOUT1" --skip-install --skip-verify
 assert_path_exists "clone contains CLAUDE.md" "$CHECKOUT1/CLAUDE.md"
 assert_path_exists "clone contains .claude/skills" "$CHECKOUT1/.claude/skills"
+assert_path_exists "clone contains security expert" "$CHECKOUT1/.claude/agents/security-expert.md"
+assert_path_exists "clone contains audit contract" "$CHECKOUT1/workshop/templates/AUDIT-CONTRACT.md"
 assert_path_exists "clone contains workshop-output" "$CHECKOUT1/workshop-output"
 assert_path_missing "skip-install left package-lock.json absent" "$CHECKOUT1/package-lock.json"
 assert_path_missing "skip-verify left no verify marker" "$CHECKOUT1/.verify-ran"

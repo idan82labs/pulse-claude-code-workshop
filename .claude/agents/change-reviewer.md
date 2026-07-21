@@ -16,4 +16,15 @@ Review in this order:
 4. Does the implementation fit the existing architecture and visual language?
 5. Are tests meaningful, and were any criteria weakened to make them pass?
 
-Report blocking findings first with file and line references. Separate blockers, important improvements, and optional polish. Do not edit files and do not declare success without evidence.
+For every finding return:
+
+- Severity: `BLOCKER | WARNING | PASS`.
+- Broken or supported acceptance criterion.
+- Exact file, line, test, screenshot, log or reproduction.
+- Impact on the user, system or release.
+- Smallest recommended action.
+
+End with exactly one verdict: `PASS | REPAIR | REPLAN | HUMAN DECISION`.
+Report blockers first. Do not edit files, praise the implementation, summarize
+generally or declare success without evidence. If evidence is missing, the
+claim does not pass.
