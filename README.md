@@ -6,7 +6,27 @@ The application is intentionally complete enough to feel like a real product and
 
 This repository is the clean participant baseline. The workshop feature is deliberately not implemented.
 
-## Run the project
+## Quick start
+
+Requirements: git, Node.js 20 or newer, npm, and Claude Code installed. Copy
+and run this one command — Claude Code loads the `82labs-workshop` plugin for
+the session and runs its bootstrap skill, which checks prerequisites, clones
+or safely reuses this repository, installs dependencies, verifies the
+workshop assets are present, runs `npm run verify`, and prints the exact
+command to enter the project and start Claude:
+
+```bash
+claude --plugin-url https://raw.githubusercontent.com/idan82labs/pulse-claude-code-workshop/main/dist/82labs-workshop-plugin.zip "/82labs-workshop:bootstrap"
+```
+
+The cloned project already includes a best-practice `CLAUDE.md`, reusable
+project skills, expert subagents, and the spec/goal/plan/evidence templates
+used during the workshop — nothing else to set up.
+
+Prefer to install the plugin persistently instead of loading it per-session?
+See [Persistent install](#persistent-install) below.
+
+## Run the project manually
 
 Requirements: Node.js 20 or newer and Claude Code installed.
 
@@ -31,6 +51,19 @@ npm run verify
 
 The command type-checks, tests, and builds both the frontend and backend.
 
+## Persistent install
+
+Advanced users who want the bootstrap plugin available across sessions,
+instead of loading it once with `--plugin-url`, can install it from this
+repository's marketplace manifest:
+
+```bash
+claude plugin marketplace add idan82labs/pulse-claude-code-workshop
+claude plugin install 82labs-workshop@82labs-workshop-marketplace
+```
+
+Then run `/82labs-workshop:bootstrap` from any session.
+
 ## Workshop materials
 
 - [`workshop/01-PROJECT-BRIEF-HE.md`](workshop/01-PROJECT-BRIEF-HE.md) — the deliberately open feature request
@@ -50,7 +83,9 @@ src/shared/               Shared domain types
 .claude/agents/           Product, architecture, design, QA and review experts
 .claude/skills/           Reusable specification, design and loop workflows
 workshop/                 Participant brief, canvas, guide and homework
-examples/plugin/          The same idea packaged as a shareable Claude Code plugin
+examples/plugin/          A different example: packaging project skills as a plugin
+plugin/82labs-workshop/   The one-command workshop bootstrap plugin (Quick start above)
+.claude-plugin/           Marketplace manifest listing plugin/82labs-workshop
 ```
 
 ## Workshop boundary

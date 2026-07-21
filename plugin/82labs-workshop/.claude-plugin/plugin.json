@@ -1,0 +1,12 @@
+{
+  "name": "82labs-workshop",
+  "description": "One-command bootstrap for the 82Labs Pulse Claude Code workshop: clones the workshop repository, installs dependencies, verifies workshop assets are present, and reports the exact command to start working.",
+  "version": "1.0.0",
+  "author": {
+    "name": "82Labs"
+  },
+  "homepage": "https://github.com/idan82labs/pulse-claude-code-workshop",
+  "repository": "https://github.com/idan82labs/pulse-claude-code-workshop",
+  "license": "MIT",
+  "keywords": ["workshop", "bootstrap", "onboarding", "pulse"]
+}

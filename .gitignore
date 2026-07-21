@@ -1,5 +1,6 @@
 node_modules/
-dist/
+dist/*
+!dist/82labs-workshop-plugin.zip
 coverage/
 .DS_Store
 *.log
