@@ -1,6 +1,6 @@
-# מדריך למשתתף: שתי משימות, תהליך עבודה אחד
+# מדריך למשתתף: Pulse עם Sonnet 5
 
-ההוראות המעודכנות, כל ה-prompts וקבצי ההורדה נמצאים גם ב-Hub:
+המדריך הזה הוא עותק offline של שתי המשימות שב-Hub. ההוראות המעודכנות וה-prompts להעתקה נמצאים גם ב:
 
 `https://labs82-claude-code-workshop.idan-t927194.chatgpt.site/#practice`
 
@@ -22,7 +22,9 @@ npm run dev
 /context
 ```
 
-בשלב התכנון עובדים ב-Plan Mode עם effort גבוה. רק אחרי שאדם מאשר את `PLAN.md` עוברים ל-Accept Edits: עריכת הקבצים תאושר אוטומטית, ופעולות terminal אחרות עדיין יבקשו אישור. אז מורידים ל-effort בינוני ומבצעים יחידות עבודה תחומות.
+Sonnet 5 הוא מודל העבודה בשתי המשימות. ב-Plan Mode עובדים עם effort גבוה. רק אחרי שאדם מאשר את `PLAN.md` עוברים ל-Accept Edits, מורידים ל-effort בינוני ומבצעים יחידות עבודה תחומות.
+
+אל תחברו production, אל תדביקו secrets ותנו רק את ההרשאות שנחוצות לתרגיל.
 
 ## מה ה-Bootstrap התקין ואיך משתמשים בזה
 
@@ -55,6 +57,7 @@ claude
 
 ```text
 workshop-output/
+├── PRODUCT-DIRECTION.md
 ├── PRODUCT-MAP.md
 ├── GOAL.md
 ├── FEATURE_SPEC.md
@@ -65,45 +68,77 @@ workshop-output/
 └── EVIDENCE/
 ```
 
+כל קובץ שומר את ההחלטות שצריך לשלב הבא. אחרי compaction, handoff או session חדש קוראים אותם מחדש במקום לסמוך על היסטוריית הצ׳אט.
+
+## איך משתמשים ברשימת המשימות של Claude
+
+ה-Goal הוא היעד הקבוע; ה-Plan שומר את החלטות הביצוע; רשימת המשימות מציגה את המסלול הנוכחי. Claude יכול להוסיף, לפצל או לסדר מחדש tasks כשמתגלה מידע חדש, אבל הוא לא משנה דרישה או מסמן `done` בלי ראיה.
+
+בדקו לאורך הריצה:
+
+1. יש רק task אחד שמסומן כמתבצע כרגע.
+2. כל task קטן מספיק כדי להסתיים בבדיקה ברורה.
+3. blocker או החלטה פתוחה נכתבים במפורש ולא נעלמים בתוך task כללי.
+4. לפני מעבר ל-task הבא נשמרת ראיה: test, screenshot, log או diff שנבדק.
+5. אחרי replan הרשימה מתעדכנת, אבל `GOAL.md` נשאר מקור האמת לתוצאה ולתנאי העצירה.
+
 ## משימה 01 — מבקשה עמומה לתוכנית שאפשר לבצע
 
-במשימה הזאת עדיין לא עורכים קוד.
+לא עורכים קוד במשימה הזאת. קודם מריצים את Pulse ופותחים אותו בדפדפן. כל משתתף כותב take אישי: מה הוא ראה, למי הוא רוצה לעזור, איזו החלטה או פעולה הוא רוצה לשפר ומה לא ייכנס לגרסה הראשונה.
 
-1. קוראים את בריף המוצר ואת ה-repo וממפים את המסלול הקיים דרך UI, API, domain ו-tests.
-2. כותבים Goal עם non-goals, שלושה קריטריונים וראיה לכל קריטריון.
-3. עושים fan-out לקריאה בלבד: Product, Design, Architecture ו-QA מקבלים אותו brief, שאלה שונה וחוזה פלט קבוע. בסדנה מריצים ברצף כדי לשמור usage.
-4. מפעילים Security רק כשהשינוי נוגע להרשאות, מידע רגיש, input חיצוני, dependency, MCP, CLI, browser, SSH או deploy. אחרת כותבים `SECURITY NOT TRIGGERED` והסיבה.
-5. ה-main agent עושה fan-in: מסיר כפילויות, פותר סתירות וכותב `FEATURE_SPEC.md` אחד, לא אוסף memos.
-6. נכנסים ל-Plan Mode וכותבים את החתך השלם הקטן ביותר: קבצים מדויקים, contracts, invariants, מצבי כשל, בדיקה לכל criterion ותנאי עצירה.
+Claude ממפה את המסלול הקיים דרך UI, API, domain ו-tests ומציע שלושה כיוונים שמבוססים על המוצר והמידע שכבר קיימים. המשתתף בוחר, משלב או משנה אחד ושומר את ההחלטה ב-`PRODUCT-DIRECTION.md`. ה-Agent אינו בוחר את הפיצ׳ר במקום המשתתף.
 
-שומרים `PRODUCT-MAP.md`, `GOAL.md`, `FEATURE_SPEC.md` ו-`PLAN.md` בתוך `workshop-output/`.
+אחר כך כותבים Goal עם non-goals, שלושה קריטריונים וראיה לכל אחד.
 
-סיימתם כשאפשר להעביר את `PLAN.md` ל-session חדש והוא יכול להתחיל לבצע בלי לפתוח מחדש החלטת מוצר או ארכיטקטורה.
+אחר כך עושים fan-out לקריאה בלבד: Product, Design, Architecture ו-QA מקבלים אותו brief, שאלה שונה וחוזה פלט קבוע. בסדנה מריצים אותם ברצף כדי לשמור usage. Security מצטרף רק כשהשינוי נוגע להרשאות, מידע רגיש, input חיצוני, dependency, MCP, CLI, browser, SSH או deploy; אחרת מתעדים `SECURITY NOT TRIGGERED` והסיבה.
+
+ה-main agent עושה fan-in: מסיר כפילויות ומציג החלטות שמשנות את הכיוון. המשתתף נשאר product owner, מאשר או דוחה, ורק אז נכתב `FEATURE_SPEC.md` אחד.
+
+לבסוף נכנסים ל-Plan Mode עם effort גבוה, טוענים את ה-Spec ואת ה-repo וכותבים את החתך השלם הקטן ביותר: קבצים מדויקים, contracts, invariants, failure propagation, בדיקה לכל criterion ותנאי עצירה.
+
+ההבדל חשוב: ה-Spec אומר מה המוצר יעשה ולמה; ה-Plan אומר איך לממש אותו ובאיזה סדר; רשימת המשימות נוצרת מה-Plan בזמן הביצוע.
+
+שומרים:
+
+- `workshop-output/PRODUCT-DIRECTION.md`
+- `workshop-output/PRODUCT-MAP.md`
+- `workshop-output/GOAL.md`
+- `workshop-output/FEATURE_SPEC.md`
+- `workshop-output/PLAN.md`
+
+סיימתם כשאפשר להעביר את חמשת הקבצים ל-session חדש והוא יכול להתחיל לבצע בלי לפתוח מחדש החלטת מוצר או ארכיטקטורה.
 
 ## משימה 02 — Skill, חתך עובד והוכחת איכות
 
 ה-Spec מתאר את הפיצ׳ר המסוים: מה בונים, למי, מה הגבולות ואיך בודקים אותו. ה-Skill אורז שיקול דעת שחוזר גם במשימות אחרות: אילו שאלות לשאול, באיזה סדר לעבוד, מה לבדוק ומה נחשב תוצאה טובה. דרישות של Pulse נשארות ב-Spec; כללי עבודה מקצועיים שחוזרים עוברים ל-Skill.
 
-בסדנה נבנה `pulse-decision-ui`. הוא מופעל כשמתכננים או מבקרים ממשק שעוזר למשתמש לקבל החלטה. הוא מגדיר היררכיה, states, נגישות, workflow ורובריקה. אסור לו להמציא עובדות על Pulse או לקבע layout אחד מראש.
+`pulse-decision-ui` מופעל כשמתכננים או מבקרים decision-support UI. הקלט שלו הוא Goal, Spec, המסך הקיים והראיות. אסור לו להמציא עובדות על Pulse או לקבע layout אחד מראש.
+
+מה עושים:
 
 1. מריצים את אותו brief בלי Skill, שומרים baseline ונותנים לו ציון.
 2. כותבים `.claude/skills/pulse-decision-ui/SKILL.md` עם trigger, inputs, workflow, boundaries, states, accessibility ורובריקה.
 3. מאשרים את ה-Plan, עוברים ל-Accept Edits, מורידים ל-effort בינוני ומבצעים את `PLAN.md` בצעדים תחומים.
-4. משלימים מסלול אחד דרך UI, API, domain ו-test, כולל loading, empty, error ו-recovery רלוונטיים.
-5. מריצים `npm run verify`, משווים לפני ואחרי מול אותה רובריקה ונותנים ל-reviewer עם context נקי לנסות להפריך את טענת הסיום.
-6. כל finding מציין severity, criterion, ראיה מדויקת, impact, action ו-verdict אחד: `PASS / REPAIR / REPLAN / HUMAN DECISION`.
+4. מריצים `npm run verify`, משווים לפני ואחרי מול אותה רובריקה ונותנים ל-reviewer עם context נקי לנסות להפריך את טענת הסיום.
+5. כל finding מציין severity, criterion, ראיה מדויקת, impact, action ו-verdict אחד: `PASS / REPAIR / REPLAN / HUMAN DECISION`.
 
-שומרים את ה-Skill, ה-diff, `EVIDENCE/before-after.md`, `REVIEW.md` ו-`CHANGE-WALKTHROUGH.md`.
+שומרים:
 
-סיימתם כשמסלול אחד עובד מקצה לקצה, כל שיפור מול ה-baseline קשור לכלל ב-Skill, וה-reviewer מחזיר PASS או blocker מדויק.
+- `.claude/skills/pulse-decision-ui/SKILL.md`
+- ה-diff והמסלול העובד
+- `workshop-output/EVIDENCE/before-after.md`
+- `workshop-output/REVIEW.md`
+- `workshop-output/CHANGE-WALKTHROUGH.md`
+
+סיימתם כשמסלול אחד עובד דרך UI, API, domain ו-test; כל שיפור מול ה-baseline קשור לכלל ב-Skill; וה-reviewer מחזיר PASS או blocker מדויק.
 
 ## Audit בשלוש נקודות
 
-- לפני ביצוע: בודקים Goal, Spec, Plan, הרשאות וגבולות.
-- במהלך ביצוע: משווים כל chunk ל-Plan, מריצים בדיקה קרובה ומוודאים שנוצרה ראיה חדשה.
+- לפני ביצוע: Goal, Spec, Plan, הרשאות וגבולות.
+- במהלך ביצוע: diff מול Plan, בדיקה קרובה, scope, trust boundary וראיה חדשה.
 - לפני מסירה: Reviewer נקי בודק functionality, product/UX, architecture, security/privacy ו-evidence בלי לערוך קוד.
 
-התבנית המלאה נמצאת ב-`workshop/templates/AUDIT-CONTRACT.md` וב-`workshop/04-AUDIT-PLAYBOOK-HE.md`.
+התבנית המלאה נמצאת ב-`workshop/templates/AUDIT-CONTRACT.md` וב-Hub תחת Fan-out, Fan-in ו-Audit.
 
 ## כש-context מתפזר
 
@@ -115,8 +150,8 @@ workshop-output/
 
 ## המשך בבית
 
-ה-Capstone לוקח בעיה מהעולם שלכם ומריץ עליה את אותו רצף:
+ה-Capstone הוא מערכת full-stack עצמאית שבונים אחרי הסדנה. בוחרים כל בעיה אמיתית מהעולם שלכם ומריצים עליה את אותו רצף:
 
-`Goal → Spec → Skill → Plan → Execute → Review → Evidence`
+`Direction → Goal → Spec → Plan → Skill → Task list → Execute → Review → Evidence`
 
-התוצר לראיון אינו רק URL חי. הוא כולל את הבעיה, ההחלטות, מה האצלתם, איך שמרתם את ה-Agent על המסלול ואיזו ראיה מוכיחה שהמערכת עובדת.
+התוצר כולל UI responsive, server/API, מסד נתונים, write אמיתי, states, tests ו-URL חי. הוא כולל גם את הבעיה, ההחלטות, מה האצלתם, איך שמרתם את ה-Agent על המסלול ואיזו ראיה מוכיחה שהמערכת עובדת. הדרישות המלאות וקישורי הפריסה נמצאים ב-Hub וב-`homework.md`.

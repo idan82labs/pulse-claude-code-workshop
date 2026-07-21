@@ -3,7 +3,7 @@
 A self-contained Claude Code plugin that bootstraps the 82Labs Pulse Claude
 Code workshop with one command. It does not contain the workshop content
 itself — the cloned project already ships a best-practice `CLAUDE.md`,
-project skills, expert subagents, and spec/goal/plan/evidence templates. This
+project Skills, expert subagents, a product-direction template, and the workbooks. This
 plugin's only job is getting that project checked out, installed, and
 verified.
 

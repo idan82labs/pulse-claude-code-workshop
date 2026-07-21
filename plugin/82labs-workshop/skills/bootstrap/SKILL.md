@@ -1,5 +1,5 @@
 ---
-description: Bootstraps the 82Labs Pulse Claude Code workshop on this machine — checks prerequisites (git, Node >= 20, npm, the claude CLI), clones or safely reuses github.com/idan82labs/pulse-claude-code-workshop, installs dependencies, verifies the workshop assets are present, runs npm run verify, and prints the next command to start working. Use when the user asks to set up, bootstrap, install, or start the Pulse Claude Code workshop.
+description: Bootstraps the 82Labs Pulse Claude Code workshop on this machine — checks prerequisites (git, Node >= 20.19, npm, the claude CLI), clones or safely reuses github.com/idan82labs/pulse-claude-code-workshop, installs dependencies, verifies the workshop assets are present, runs npm run verify, and prints the next command to start working. Use when the user asks to set up, bootstrap, install, or start the Pulse Claude Code workshop.
 ---
 
 # 82Labs Pulse workshop bootstrap
@@ -10,9 +10,9 @@ do not reimplement its steps by hand.
 
 ## What the script does
 
-1. Checks that `git`, `node` (>= 20), `npm`, and `claude` are on `PATH`.
+1. Checks that `git`, `node` (>= 20.19), `npm`, and `claude` are on `PATH`.
 2. Clones `https://github.com/idan82labs/pulse-claude-code-workshop.git` into the
-   target directory (`./pulse-claude-code-workshop` by default).
+   target directory (`$HOME/pulse-claude-code-workshop` by default).
 3. If the target directory already exists, it is only reused when it is a git
    checkout whose `origin` remote matches the workshop repository. Anything
    else — an unrelated directory, a non-empty non-git folder, a checkout of a
@@ -20,9 +20,9 @@ do not reimplement its steps by hand.
    instead of overwriting it.
 4. Verifies the checkout actually contains `CLAUDE.md`, `.claude/skills`,
    `.claude/agents`, the conditional security expert, the audit contract,
-   `workshop/templates`, and `workshop-output`.
+   the product-direction template, `workshop/templates`, and `workshop-output`.
 5. Runs `npm install` and then `npm run verify` (both can be skipped).
-6. Prints the exact command to `cd` into the project and start Claude Code.
+6. Prints the exact commands to run Pulse and start Claude Code in separate terminals.
 
 ## How to invoke it
 
@@ -33,8 +33,7 @@ that come from the user:
 "${CLAUDE_PLUGIN_ROOT}/scripts/bootstrap.sh" [--target <dir>] [--dry-run] [--skip-install] [--skip-verify]
 ```
 
-- Default target directory: `./pulse-claude-code-workshop` (relative to the
-  user's current working directory). Use `--target` if the user names a
+- Default target directory: `$HOME/pulse-claude-code-workshop`. Use `--target` if the user names a
   different location.
 - Use `--dry-run` first if the user seems unsure, or if they explicitly ask
   to preview the plan before it runs.
@@ -53,10 +52,12 @@ workshop, so there is nothing left to scaffold:
 - Reusable project skills under `.claude/skills/`.
 - Expert subagents under `.claude/agents/` (product, architecture, design, QA,
   conditional security, and change review).
-- Spec, goal, plan, audit, and evidence templates under `workshop/templates/` and
-  `workshop-output/`.
+- Product-direction and audit templates, plus goal/spec/plan workbooks and an
+  empty `workshop-output/` folder for the artifacts participants create.
 - The Pulse product itself (`src/`), runnable with `npm run dev` and
   verifiable with `npm run verify`.
+
+Ask the participant to run Pulse and open the local URL before starting the first prompt. Their observation and product take should be written before the agents propose directions.
 
 Do not copy or duplicate any of those assets from this plugin — they already
 exist in the cloned repository. This plugin's only job is getting that

@@ -8,7 +8,7 @@ This repository is the clean participant baseline. The workshop feature is delib
 
 ## Quick start
 
-Requirements: git, Node.js 20 or newer, npm, and Claude Code installed. Copy
+Requirements: git, Node.js 20.19 or newer, npm, and Claude Code installed. Copy
 and run this one command — Claude Code registers the workshop marketplace,
 installs the `82labs-workshop` plugin, and starts a new session with its
 bootstrap skill. The skill checks prerequisites, clones or safely reuses this
@@ -20,7 +20,7 @@ claude plugin marketplace add idan82labs/pulse-claude-code-workshop && claude pl
 ```
 
 The cloned project already includes a best-practice `CLAUDE.md`, reusable
-project skills, expert subagents, and the spec/goal/plan/evidence templates
+project Skills, expert subagents, a product-direction template, and the workbooks
 used during the workshop — nothing else to set up.
 
 The command is safe to run again: Claude Code recognizes an already-added
@@ -28,7 +28,7 @@ marketplace and an already-installed plugin.
 
 ## Run the project manually
 
-Requirements: Node.js 20 or newer and Claude Code installed.
+Requirements: Node.js 20.19 or newer and Claude Code installed.
 
 ```bash
 git clone https://github.com/idan82labs/pulse-claude-code-workshop.git
@@ -73,6 +73,7 @@ Then run `/82labs-workshop:bootstrap` from any session.
 - [`workshop/06-EXECUTION-LOOPS-HE.md`](workshop/06-EXECUTION-LOOPS-HE.md) — practical loop, access, model-routing and context runbook
 - [`workshop/templates/my-skill/SKILL.md`](workshop/templates/my-skill/SKILL.md) — starter template for the packaged-expertise exercise
 - [`workshop/templates/AUDIT-CONTRACT.md`](workshop/templates/AUDIT-CONTRACT.md) — copyable pre-flight, in-flight and release audit record
+- [`workshop/templates/PRODUCT-DIRECTION.md`](workshop/templates/PRODUCT-DIRECTION.md) — participant-owned product take and direction record
 - [`workshop-output/README.md`](workshop-output/README.md) — the artifact chain participants build during the session
 
 ## Repository map

@@ -10,7 +10,7 @@ Pulse gives delivery leads a shared view of projects, progress, constraints, and
 2. Explore the current product and API before proposing changes.
 3. Write an explicit goal, non-goals, acceptance criteria, constraints, and verification plan.
 4. Fan out focused, read-only perspectives to product, architecture, design, and QA. Add the security expert only when the change crosses a trust boundary, handles sensitive data or external input, or expands tool/deployment access.
-5. Fan in their advice into one coherent feature specification: remove duplicates, resolve conflicts and record rejected options. Experts advise; the main agent decides.
+5. Fan in their advice into one coherent feature specification: remove duplicates, resolve conflicts and record rejected options. Experts advise; the main agent owns synthesis and consistency. The participant approves every product decision.
 6. Present the plan before editing application code.
 
 ## Engineering boundaries

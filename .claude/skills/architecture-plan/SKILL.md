@@ -5,7 +5,7 @@ description: Convert an approved feature specification into a minimal, reversibl
 
 # Architecture plan
 
-Read the specification and trace the existing code paths. Do not design from memory.
+Read the approved specification and trace the existing code paths. Treat the Spec as the product contract: it defines what the product should do and why. The Plan defines how to implement it and in what order. Do not reopen product decisions or design from memory.
 
 Produce:
 
@@ -17,5 +17,14 @@ Produce:
 6. Tests at the cheapest meaningful layer.
 7. Risks, rollback, and deliberate non-goals.
 8. Ordered implementation steps with verification after each meaningful step.
+
+After the participant approves the Plan, turn those ordered steps into a visible task list for execution:
+
+- one bounded chunk per task,
+- exactly one task in progress,
+- verification as an explicit task,
+- complete only after the nearest check produces evidence.
+
+If a new product or architecture decision appears during planning, stop and return it to the participant instead of hiding it inside an implementation step.
 
 Prefer existing dependencies and patterns. If the plan requires a new library, explain why the current stack cannot satisfy the requirement.

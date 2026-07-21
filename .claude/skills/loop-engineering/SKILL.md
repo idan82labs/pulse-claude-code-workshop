@@ -11,17 +11,20 @@ description: Execute a feature through a bounded build-test-review-repair loop w
 - Observable acceptance criteria
 - Approved file-level plan
 - Verification commands and expected evidence
+- Visible task list derived from the approved plan
 - Maximum of three repair cycles
 
 ## Loop
 
-1. Implement the smallest end-to-end slice in the approved plan.
-2. Run the narrowest relevant check.
-3. Run `npm run verify` before claiming completion.
-4. Ask `change-reviewer` for an independent review.
-5. Map every failure or finding to an acceptance criterion or engineering boundary.
-6. Repair blockers and repeat verification.
-7. Stop after three repair cycles or when all criteria pass.
+1. Create or refresh the task list from the approved plan. Keep exactly one task in progress.
+2. Implement the current bounded task.
+3. Run the narrowest relevant check and inspect its output.
+4. Mark the task complete only after that check produced evidence; otherwise repair or route the failure.
+5. Run `npm run verify` before claiming completion.
+6. Ask `change-reviewer` for an independent review.
+7. Map every failure or finding to an acceptance criterion or engineering boundary.
+8. Repair blockers and repeat verification.
+9. Stop after three repair cycles or when all criteria pass.
 
 ## Stop rules
 

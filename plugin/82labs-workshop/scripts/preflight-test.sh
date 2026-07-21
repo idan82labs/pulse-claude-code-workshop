@@ -63,10 +63,20 @@ cat > "$FIXTURE/CLAUDE.md" <<'EOF'
 # Fixture project instructions
 EOF
 : > "$FIXTURE/.claude/skills/.gitkeep"
+for skill in write-feature-spec architecture-plan drop-generic-design ui-ux-review loop-engineering; do
+  mkdir -p "$FIXTURE/.claude/skills/$skill"
+  : > "$FIXTURE/.claude/skills/$skill/SKILL.md"
+done
 : > "$FIXTURE/.claude/agents/.gitkeep"
+: > "$FIXTURE/.claude/agents/product-expert.md"
+: > "$FIXTURE/.claude/agents/design-expert.md"
+: > "$FIXTURE/.claude/agents/architecture-expert.md"
+: > "$FIXTURE/.claude/agents/qa-expert.md"
 : > "$FIXTURE/.claude/agents/security-expert.md"
+: > "$FIXTURE/.claude/agents/change-reviewer.md"
 : > "$FIXTURE/workshop/templates/.gitkeep"
 : > "$FIXTURE/workshop/templates/AUDIT-CONTRACT.md"
+: > "$FIXTURE/workshop/templates/PRODUCT-DIRECTION.md"
 : > "$FIXTURE/workshop-output/.gitkeep"
 
 cat > "$FIXTURE/package.json" <<'EOF'
@@ -102,6 +112,7 @@ assert_path_exists "clone contains CLAUDE.md" "$CHECKOUT1/CLAUDE.md"
 assert_path_exists "clone contains .claude/skills" "$CHECKOUT1/.claude/skills"
 assert_path_exists "clone contains security expert" "$CHECKOUT1/.claude/agents/security-expert.md"
 assert_path_exists "clone contains audit contract" "$CHECKOUT1/workshop/templates/AUDIT-CONTRACT.md"
+assert_path_exists "clone contains product direction template" "$CHECKOUT1/workshop/templates/PRODUCT-DIRECTION.md"
 assert_path_exists "clone contains workshop-output" "$CHECKOUT1/workshop-output"
 assert_path_missing "skip-install left package-lock.json absent" "$CHECKOUT1/package-lock.json"
 assert_path_missing "skip-verify left no verify marker" "$CHECKOUT1/.verify-ran"

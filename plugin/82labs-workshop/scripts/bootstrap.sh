@@ -5,20 +5,30 @@ set -euo pipefail
 
 DEFAULT_REPO_URL="https://github.com/idan82labs/pulse-claude-code-workshop.git"
 REPO_URL="${PULSE_WORKSHOP_REPO_URL:-$DEFAULT_REPO_URL}"
-TARGET_DIR="./pulse-claude-code-workshop"
+TARGET_DIR="${PULSE_WORKSHOP_TARGET:-$HOME/pulse-claude-code-workshop}"
 DRY_RUN=0
 SKIP_INSTALL=0
 SKIP_VERIFY=0
 MIN_NODE_MAJOR=20
+MIN_NODE_MINOR=19
 
 # Paths that must exist in a genuine workshop checkout.
 REQUIRED_PATHS=(
   "CLAUDE.md"
-  ".claude/skills"
-  ".claude/agents"
+  ".claude/skills/write-feature-spec/SKILL.md"
+  ".claude/skills/architecture-plan/SKILL.md"
+  ".claude/skills/drop-generic-design/SKILL.md"
+  ".claude/skills/ui-ux-review/SKILL.md"
+  ".claude/skills/loop-engineering/SKILL.md"
+  ".claude/agents/product-expert.md"
+  ".claude/agents/design-expert.md"
+  ".claude/agents/architecture-expert.md"
+  ".claude/agents/qa-expert.md"
   ".claude/agents/security-expert.md"
+  ".claude/agents/change-reviewer.md"
   "workshop/templates"
   "workshop/templates/AUDIT-CONTRACT.md"
+  "workshop/templates/PRODUCT-DIRECTION.md"
   "workshop-output"
 )
 
@@ -32,7 +42,7 @@ Usage: bootstrap.sh [options]
 
 Options:
   --target <dir>   Directory to clone/reuse the workshop project in
-                    (default: ./pulse-claude-code-workshop)
+                    (default: $HOME/pulse-claude-code-workshop)
   --dry-run        Print the plan without cloning, installing, or verifying
   --skip-install   Skip "npm install"
   --skip-verify    Skip "npm run verify"
@@ -101,13 +111,14 @@ check_prereqs() {
   fi
 
   if ! command -v node >/dev/null 2>&1; then
-    err "node (>= ${MIN_NODE_MAJOR}) is required but was not found on PATH"
+    err "node (>= ${MIN_NODE_MAJOR}.${MIN_NODE_MINOR}) is required but was not found on PATH"
     missing=1
   else
-    local node_major
+    local node_major node_minor
     node_major="$(node -e 'process.stdout.write(String(process.versions.node.split(".")[0]))')"
-    if [ "$node_major" -lt "$MIN_NODE_MAJOR" ]; then
-      err "node >= ${MIN_NODE_MAJOR} is required, found $(node --version)"
+    node_minor="$(node -e 'process.stdout.write(String(process.versions.node.split(".")[1]))')"
+    if [ "$node_major" -lt "$MIN_NODE_MAJOR" ] || { [ "$node_major" -eq "$MIN_NODE_MAJOR" ] && [ "$node_minor" -lt "$MIN_NODE_MINOR" ]; }; then
+      err "node >= ${MIN_NODE_MAJOR}.${MIN_NODE_MINOR} is required, found $(node --version)"
       missing=1
     fi
   fi
@@ -268,7 +279,7 @@ main() {
   fi
 
   log "done"
-  printf '\nNext command:\n  cd "%s" && claude\n' "$abs_target"
+  printf '\nOpen two terminals:\n  1. cd "%s" && npm run dev\n  2. cd "%s" && claude\n\nOpen the local URL printed by npm run dev before starting the first prompt.\n' "$abs_target" "$abs_target"
 }
 
 main "$@"
