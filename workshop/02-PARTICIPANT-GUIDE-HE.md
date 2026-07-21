@@ -24,6 +24,21 @@ npm run dev
 
 בשלב התכנון עובדים ב-Plan Mode עם effort גבוה. רק אחרי שאדם מאשר את `PLAN.md` עוברים ל-Accept Edits: עריכת הקבצים תאושר אוטומטית, ופעולות terminal אחרות עדיין יבקשו אישור. אז מורידים ל-effort בינוני ומבצעים יחידות עבודה תחומות.
 
+## מה ה-Bootstrap התקין ואיך משתמשים בזה
+
+- ה-Plugin הגלובלי מוסיף את `/82labs-workshop:bootstrap`. זאת פקודת setup; לא עובדים דרכה על הפיצ׳ר.
+- `CLAUDE.md` נטען אוטומטית כשפותחים Claude Code מתוך ה-repo.
+- `.claude/skills/` מכילה workflows חוזרים. לדוגמה: `/write-feature-spec`, ‏`/architecture-plan` ו-`/ui-ux-review`.
+- `.claude/agents/` מכילה מומחי Product, Design, Architecture, QA ו-Review. מבקשים מה-Agent הראשי להפעיל מומחה בשם ולהחזיר תשובה תחומה.
+- `workshop/templates/` היא נקודת הפתיחה; `workshop-output/` היא תיקיית התוצרים והראיות.
+
+```bash
+cd ~/pulse-claude-code-workshop
+claude
+```
+
+את Pulse מריצים עם `npm run dev`. אחרי שינוי מריצים `npm run verify`.
+
 ## מצבי ההרשאה שצריך להכיר
 
 | מצב | מה הוא מאפשר | מתי נשתמש בו |
